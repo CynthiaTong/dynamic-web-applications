@@ -1,0 +1,74 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Fastfood Competition</title>
+</head>
+<body>
+	<script>
+		var choices = [];
+
+		var player = {
+		
+			name : prompt("Welcome to the NYU annual fastfood competition! Enter your name: "
+			) || "Unknown",
+
+			intro : function() {
+				console.log(this.name + " enters the fastfood-eating challenge and needs to decide which competition to join: ");
+				console.log("1. eating 10 burgers in 3 minutes");
+				console.log("2. eating fries (with no ketchup or water) nonstop for 5 hour");
+				console.log("Type in 'choose(1)' or 'choose(2)' to decide.");
+
+			},
+
+			rounds : [
+				//round 1 
+				function(arr) {
+					if (arr[0] === 1) {
+						console.log(player.name + " prepares for the 3-minute burger challenge by: ");
+						console.log("1. eating 10 burgers per meal");
+						console.log("2. having 3-minute meals 10 times per day");
+					} else if (arr[0] === 2) {
+						console.log(player.name + " prepares for the 5-hour fries challenge by: ");
+						console.log("1. not drinking water for 3 days to get used to the driness in the mouth");
+						console.log("2. starving for 3 days before the challenge");
+					}
+
+				}, 
+				// round 2 
+				function(arr) {
+					if (arr[0] === 1 && arr[1] == 1) {
+						console.log(player.name + "'s belly explodes after having the first 10 burgers. " + player.name + " decides to try the other challenge next year on the way to the hospital.");
+					} else if (arr[0] === 1 && arr[1] == 2) {
+						console.log(player.name + " could only finish half a burger every 3 minutes. " + player.name + " gets frustrated and quits the challenge.");
+					}else if (arr[0] === 2 && arr[1] == 1) {
+						console.log(player.name + " couldn't stand the dehydration and drinks orange juice. " + player.name + "'s training has no effect.");
+					}else if (arr[0] === 2 && arr[1] == 2) {
+						console.log("By the morning of the last day, " + player.name + " is about to starve to death. " + player.name + " orders food from five guys and couldn't take any more fries by the time the competitoin starts." );
+					}
+
+					console.log("Game over. Try again by refreshing the page!");
+					return;
+				}
+			]
+
+		};
+
+		function choose(n) {
+			choices.push(n);
+			player.rounds[choices.length-1](choices);
+		}
+
+		function game() {
+			player.intro();
+		}
+
+		// game();
+		exports.game = function() {
+			game();
+		}
+
+
+	</script>
+</body>
+</html>

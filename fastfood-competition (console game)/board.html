@@ -1,0 +1,123 @@
+<!DOCTYPE html> 
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Buggy Board</title>
+</head>
+<body>
+	<script>
+		// var input = prompt("Enter: ");
+		// console.log(input);
+		var numRows = 7; 
+		var numCols = 10;
+		var enemies = [];
+
+
+		function gameBoard(rows, cols) {
+			output = "";
+
+			for (var r=0; r < numRows; r++) {
+				temp = "";
+				for (var c=0; c < numCols; c++) {
+					temp += ".";
+				}
+				output += temp + "\n";
+			}
+
+			return output;
+		}
+
+		// console.log(gameBoard());
+
+		function getRandomInt(min, max) {
+    		return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+
+		//http://stackoverflow.com/questions/1431094/how-do-i-replace-a-character-at-a-particular-index-in-javascript
+		String.prototype.replaceAt = function(index, character) {
+    		return this.substr(0, index) + character + this.substr(index+character.length);
+		};
+		
+		function makeEnemy() {
+		var enemy = {
+			xPos: getRandomInt(0, 9),
+			yPos: 0,
+
+			fall: function() {
+				this.yPos += numCols+1;
+			},
+
+			// appear: function() {
+			// 	this.yPos = getRandomInt(0, 9);
+			// 	this.xPos = getRandomInt(0, 9);
+			// },
+
+			hitGround: function() {
+				if (this.yPos >= (numCols+1)*(numRows-1)) return true;
+				else return false;
+				}
+			};
+			return enemy;
+		}
+
+		function addEnemies() {
+
+			for (var i=0; i<5; i++) {
+				enemies.push(makeEnemy());
+			}
+
+			// var counter;
+			// var inter = setInterval(function() {
+			// 	enemies.push(makeEnemy());
+			// 	counter ++;
+			// }, 1000);
+
+			// if (counter > 5) clearInterval(inter);
+		}
+
+		// for (var e=0; e < 5; e++) {
+		// 	enemies.push(makeEnemy());
+		// }
+
+
+		function game() { 
+
+			addEnemies();
+
+			var over = false;
+
+			for (var i=0; i<enemies.length; i++) {
+				if (enemies[i].hitGround()) over = true;
+			}
+			// var over = enemy.hitGround();
+
+			if (!over) {
+
+				for (var i=0; i<enemies.length; i++) {
+					setTimeout(function() {
+						enemies[i].fall();
+					}, 500);
+				}
+				// enemies[1].fall();
+
+					var board = gameBoard();
+					for (var x=0; x<enemies.length; ++x) {
+						board = board.replaceAt(enemies[x].xPos+enemies[x].yPos, "X");
+					}
+					console.log(board);
+					// console.log(enemy.yPos);
+			} else {
+				console.log("Game Over!");
+				clearInterval(gameLoop);
+			}
+			return over;
+		}
+
+		var gameLoop = setInterval(function() {
+			game();
+		}, 500);
+	
+
+	</script>
+</body>
+</html>
