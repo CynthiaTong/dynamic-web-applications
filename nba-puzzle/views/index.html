@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>NBA Puzzle</title>
+
+		<style>
+			@import url('https://fonts.googleapis.com/css?family=Muli');
+
+			body {
+				margin: 0;
+				padding: 0;
+				background: url("/images/nba.jpg") no-repeat center center fixed;
+  				background-size: cover;	
+  				font-size: 22px;
+			}
+			h2, h3, p {
+				font-family: "Muli", Helvetica, sans-serif;
+				color: #f2f2f2;
+			}
+			#textContent {
+				position: fixed;
+				top: 15%;
+				left: 10%;
+			}
+
+		</style>
+	</head>
+
+	<body>
+		<div id="textContent">
+			<h2><%=title%></h2>
+			<h3><%=question%></h3>
+			<p><%=hint%></p>
+			<br>
+			<p><i><%=instruction%></i></p>
+		</div>
+	<script>
+		var title = "<%=title%>";
+		var question = "<%=question%>";
+		var hint = "<%=hint%>";
+		var instruction = "<%=instruction%>";
+	</script>
+	</body>
+
+</html>
