@@ -83,6 +83,6 @@ app.get("*", function(req, res) {
 	// res.redirect("/");
 });
 
-var port = process.env.port || 3000;
+var port = process.env.PORT;
 app.listen(port);
 console.log("app started on port: " + port);
