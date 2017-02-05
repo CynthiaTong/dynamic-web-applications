@@ -7,7 +7,6 @@
   },
   "dependencies": {
     "ejs": "*",
-    "express": "4.x",
-    "morgan": "~1.0.0"
+    "express": "4.x"
   }
 }
