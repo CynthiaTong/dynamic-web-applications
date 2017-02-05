@@ -1,6 +1,6 @@
 //requirements 
 var express = require("express");
-var logger = require("morgan");
+// var logger = require("morgan");
 
 var app = express();
 
@@ -13,7 +13,7 @@ app.set("view engine", "html");
 app.use("/images", express.static(__dirname + "/images"));
 
 //Middleware - log to terminal 
-app.use(logger("dev"));
+// app.use(logger("dev"));
 
 //start page 
 app.get("/", function(req, res) { 
