@@ -85,7 +85,7 @@ app.get("/edit/:content", function(req, res) {
   });
 });
 	
-app.post("/goals/:content", function(req, res){
+app.post("/edit-goals", function(req, res){
 
 	var d = new Date();
 	var month = parseInt(d.getMonth())+1;
@@ -97,7 +97,7 @@ app.post("/goals/:content", function(req, res){
 	var dueTime = req.body.due_hour === ""? null: req.body.due_hour + ":" + req.body.due_min;
 
 	var goal = {
-		content: req.params.content.trim(),
+		content: req.body.content.trim(),
 		tag: req.body.tag.trim(),
 		create_date: d.getFullYear() + "-" + month + "-" + d.getDate() + "  " + d.getHours() + ":" + minute, 
 		due_date: dueDate,
