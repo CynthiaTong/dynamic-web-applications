@@ -29,7 +29,10 @@ MongoClient.connect("mongodb://cynthia:idm2017@ds145369.mlab.com:45369/to-do-lis
 		if (err) return console.log(err);
 
 		db = database;
-		app.listen(process.env.PORT || 3000);
+		var port = process.env.PORT || 3000;
+		app.listen(port, function() {
+			console.log("App is running on port " + port);
+		});
 	});
 
 app.get("/", function(req, res) {
