@@ -55,9 +55,11 @@ app.post("/add", function(req, res) {
 
 	var dueDate = req.body.due_date === ""? null: "Due on: " + req.body.due_date;
 	var dueTime = req.body.due_hour === ""? null: req.body.due_hour + ":" + req.body.due_min;
+	var rawContent = req.body.content.trim();
 
 	var goal = {
-		content: req.body.content.trim(),
+		content: rawContent,
+		stripContent: rawContent.replace(/[^A-Za-z0-9]/g, ""),
 		tag: req.body.tag.trim(),
 		create_date: d.getFullYear() + "-" + month + "-" + d.getDate() + "  " + d.getHours() + ":" + minute, 
 		due_date: dueDate,

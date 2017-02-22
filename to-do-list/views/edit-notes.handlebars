@@ -1,31 +1,89 @@
-<form action="/edit-goals" method="post">
+{{#section "edit-notes"}}
+	<style>	
+
+		body {
+			font-size: 17px;
+		}
+
+		#editForm {
+			width: 50%;
+			margin: auto;
+			padding: 20px;
+		}
+
+		#alertMsg {
+			margin-left: 10%;
+		}
+
+		input {
+			font-size: 17px;
+		}
+
+		#contentInput {
+			position: relative;
+			margin-left: 10%;
+			margin-bottom: 5px;
+			width: 80%;
+		}
+
+		#tagInput {
+			position: relative;
+			margin-left: 10%;
+			margin-bottom: 5px;
+			width: 261px;
+		}
+
+		#dateArea {
+			position: relative;
+			margin-left: 10%;
+			margin-bottom: 5px;
+			width: 80%;
+		}
+
+		#hourInput, #minInput {
+			width: 45px;
+			height: 1.7em;
+		}
+
+		#submitBtn {
+			position: relative;
+			margin-left: 37%;
+			margin-top: 20px;
+		}
+
+	</style>
+
+{{/section}}
+
+<form id="editForm" action="/edit-goals" method="post">
 
 	{{#if message}}
-		<p style="color: red">{{message}}</p>
+		<p id="alertMsg" style="color: red">{{message}}</p>
 	{{/if}}
+
 	<div>
-		<input type="text" placeholder="What's your to-do?" 
+		<input id="contentInput" type="text" placeholder="What's your to-do?" 
 		name="content" value="{{goal.content}}">
 	</div>
 
 	<div>
-		<input type="text" placeholder="Add a tag? Ex. Academics"
+		<input id="tagInput" type="text" placeholder="Add a tag? Ex. Academics"
 		name="tag" value="{{goal.tag}}">
 	</div>
 
-	<div>
+	<div id="dateArea">
 		Due Date: 
-		<input type="date" placeholder="Due Date"
+		<input id="dateInput" type="date" placeholder="Due Date"
 		name="due_date" value="{{goal.due_date}}">
-		<input type="text" placeholder="Hour"
+		<input id="hourInput" type="text" placeholder="Hour"
 		name="due_hour" value="{{goal.due_hour}}">
 		:
-		<input type="text" placeholder="Minute"
+		<input id="minInput" type="text" placeholder="Min"
 		name="due_min" value="{{goal.due_min}}">
 	</div>
 
 	<div>
-    <input type="submit" value="UPDATE TO-DO">
+    <input id="submitBtn" type="submit" value="UPDATE TO-DO">
   	</div>
 
  

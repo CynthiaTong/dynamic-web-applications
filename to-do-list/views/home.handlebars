@@ -1,17 +1,54 @@
 
-{{#section "jquery"}}
+{{#section "home"}}
+
+	<style>
+		.container {
+			width: 40%;
+			margin: auto;
+			margin-top: 10px;
+			font-size: 17px;
+		}
+
+		#addArea {
+			width: 40%;
+			margin: auto;
+			margin-top: 30px;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		.tag {
+			color: gray;
+			float: left;
+			margin: 0;
+			font-size: 1.2em;
+		}
+
+		.content {
+			position: relative;
+			left: 10px;
+			font-size: 1.2em;
+		}
+
+		.dueDate {
+			margin: 0;
+		}
+
+	</style>
+
 	{{#each goals}}
 
 		<script>
 
 			$(document).ready(function() {
 
-				$("a").css("text-decoration", "none");
-
-				var btnId = "{{content}}" + "finishBtn";
-				var ctId = "{{content}}";
+				var btnId = "{{stripContent}}" + "finishBtn";
+				var ctId = "{{stripContent}}";
 
 				var finishState = true;
+				$("#" + btnId).html("Finished :D");
 
 				$("#" + btnId).click(function() {
 
@@ -46,31 +83,30 @@
 {{/section}}
 
 {{#each goals}}
-	<div>
-		<p id="tag">{{tag}}</p>
-		<p id="{{content}}">{{content}}</p>
+	<div class="container">
+		<p class="tag"><i>{{tag}}</i></p>
+		<p class="content" id="{{stripContent}}">{{content}}</p>
 
 		<a href="/edit/{{content}}">
 			<button type="button">Edit</button>
 		</a>
 
-		<button id="{{content}}finishBtn">Finished :D</button>
+		<button id="{{stripContent}}finishBtn"></button>
 
 		<a href="/delete/{{content}}">
 			<button type="button">Delete</button>
 		</a>
-		<p id="createDate">Created at: {{create_date}}</p>
+		<p class="createDate">Created at: {{create_date}}</p>
 
-		<p id="dueDate">{{due_date}}</p>
-		<p id="dueTime">{{due_time}}</p>
-		
+		<p class="dueDate">{{due_date}} {{due_time}}</p>
+
 		<hr>
+	</div>
 
 {{/each}}
 
-
-<div> 
+<div id="addArea"> 
 	<a href="/add">
-		<button type="button">Add New Notes</button>
+		<button type="button">Add New To-Do</button>
 	</a>
 </div>
