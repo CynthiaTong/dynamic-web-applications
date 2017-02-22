@@ -6,6 +6,10 @@
   "scripts": {
     "start": "node app.js"
   },
+  "engines": {
+    "node": "v6.9.4",
+    "npm": "3.10.10"
+  },
   "author": "Cynthia Xin Tong",
   "license": "ISC",
   "dependencies": {
