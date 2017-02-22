@@ -63,9 +63,13 @@ app.post("/add", function(req, res) {
 		tag: req.body.tag.trim(),
 		create_date: d.getFullYear() + "-" + month + "-" + d.getDate() + "  " + d.getHours() + ":" + minute, 
 		due_date: dueDate,
-		due_time: dueTime
+		exact_due_date: req.body.due_date,
+		due_time: dueTime,
+		due_hour: req.body.due_hour,
+		due_min: req.body.due_min
+
 	};
-    
+
     if (goal.content === "") {
 		res.render("add-notes", {message: "Please enter your to-do."});
 		} else {
