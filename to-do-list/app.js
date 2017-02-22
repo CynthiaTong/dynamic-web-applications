@@ -24,7 +24,7 @@ app.set("view engine", "handlebars");
 
 var db;
 
-MongoClient.connect("mongodb://cynthia:idm2017@ds145369.mlab.com:45369/to-do-list",
+MongoClient.connect("CREDENTIALS",
 	function(err, database) {
 		if (err) return console.log(err);
 
