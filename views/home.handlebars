@@ -1,0 +1,76 @@
+
+{{#section "jquery"}}
+	{{#each goals}}
+
+		<script>
+
+			$(document).ready(function() {
+
+				$("a").css("text-decoration", "none");
+
+				var btnId = "{{content}}" + "finishBtn";
+				var ctId = "{{content}}";
+
+				var finishState = true;
+
+				$("#" + btnId).click(function() {
+
+					if (finishState) {
+						$("#" + ctId).css({ 
+									"text-decoration": "line-through",
+									"color" : "gray"
+								});
+						$("#" + btnId).html("Not Finished :(");
+					} else {
+						$("#" + ctId).css({ 
+									"text-decoration": "none",
+									"color" : "black"
+								});
+						$("#" + btnId).html("Finished :D");
+					}
+					
+					finishState = ! finishState;
+
+				});
+			});
+		</script>
+	{{/each}}
+{{/section}}
+
+{{#section "home_style"}}
+	{{#each goals}}
+	<style>
+		color: red;
+	</style>
+	{{/each}}
+{{/section}}
+
+{{#each goals}}
+	<div>
+		<p id="tag">{{tag}}</p>
+		<p id="{{content}}">{{content}}</p>
+
+		<a href="/edit/{{content}}">
+			<button type="button">Edit</button>
+		</a>
+
+		<button id="{{content}}finishBtn">Finished :D</button>
+
+		<a href="/delete/{{content}}">
+			<button type="button">Delete</button>
+		</a>
+		<p id="createDate">Created at: {{create_date}}</p>
+
+		<p id="dueDate">{{due_date}}</p>
+		<p id="dueTime">{{due_time}}</p>
+		
+		<hr>
+
+{{/each}}
+
+
+<div> 
+	<a href="/add">
+		<button type="button">Add New Notes</button>
+	</a>
+</div>
