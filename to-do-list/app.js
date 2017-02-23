@@ -5,6 +5,8 @@ var bodyParser = require("body-parser");
 
 var app = express();
 
+var fs = require('fs');
+
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static(__dirname + "public"));
@@ -24,7 +26,9 @@ app.set("view engine", "handlebars");
 
 var db;
 
-MongoClient.connect("CREDENTIALS",
+var obj = JSON.parse(fs.readFileSync('credentials.json', 'utf8'));
+
+MongoClient.connect(obj.credentials,
 	function(err, database) {
 		if (err) return console.log(err);
 
