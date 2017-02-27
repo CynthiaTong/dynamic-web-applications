@@ -1,6 +1,5 @@
 var socket = io.connect(window.location.origin);
 
-var i = 10;
 var drawShape = false;
 var newRipple = false;
 var shapeColor;
@@ -27,7 +26,7 @@ function draw() {
 		}
 	}
 
-	for (var i =0; i < ripples.length; ++i) {
+	for (var i = 0; i < ripples.length; ++i) {
 		ripples[i].drawRipple();
 	}
 	
