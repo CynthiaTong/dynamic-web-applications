@@ -18,6 +18,7 @@ function setup() {
 
 function draw() {
 	fill(255, 80);
+	noStroke();
 	rect(0, 0, width, height);
 
 	if (drawRippleFromElsewhere) {
