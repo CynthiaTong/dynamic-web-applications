@@ -1,7 +1,5 @@
 var socket = io.connect(window.location.origin);
 
-var drawShape = false;
-var newRipple = false;
 var shapeColor;
 var circleX, circleY;
 var maxRadius;
@@ -12,8 +10,16 @@ var ripplesFromElsewhere = [];
 
 var ripples = [];
 
+// var notes = [54, 56, 58, 60, 62, 64, 65, 67, 69, 71, 73, 75, 77, 80];
+var osc; 
+
 function setup() {
 	createCanvas(windowWidth, windowHeight);
+
+	// start silent 
+	osc = new p5.TriOsc();
+	osc.start();
+	osc.amp(0);
 }
 
 function draw() {
@@ -48,7 +54,12 @@ function mousePressed() {
 	maxRadius = random(70, 90);
 	ripples.push(new Ripple(maxRadius, shapeColor, circleX, circleY));
 	sendDrawings(maxRadius, shapeColor, circleX, circleY);
+
+	var randomNote = Math.floor(Math.random()*(80-50+1)) + 50;
+
+	playSound(randomNote, maxRadius/60.0);
 }
+
 
 function Ripple(count, color, x, y) {
 	this.count = count;
@@ -75,6 +86,17 @@ function Ripple(count, color, x, y) {
 
 		}
 	}
+}
+
+function playSound(note, duration) {
+	osc.freq(midiToFreq(note));
+	osc.fade(0.2, 0.2);
+
+	osc.fade(0.3, 0.3);
+
+	setTimeout(function() {
+		osc.fade(0, 0.3);
+	}, duration*100);
 }
 
 // *** sockets *** //
