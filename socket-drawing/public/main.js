@@ -8,7 +8,7 @@ var maxRadius;
 
 var drawRippleFromElsewhere = false;
 var dataFromElsewhere = {};
-var ripplesFromElsewhere = []; 
+var ripplesFromElsewhere = [];
 
 var ripples = [];
 
@@ -22,7 +22,7 @@ function draw() {
 	rect(0, 0, width, height);
 
 	if (drawRippleFromElsewhere) {
-		for (var i =0; i < ripplesFromElsewhere.length; ++i) {
+		for (var i = 0; i < ripplesFromElsewhere.length; ++i) {
 			ripplesFromElsewhere[i].drawRipple();
 		}
 	}
@@ -30,7 +30,7 @@ function draw() {
 	for (var i = 0; i < ripples.length; ++i) {
 		ripples[i].drawRipple();
 	}
-	
+
 }
 
 function randomColor() {
@@ -74,7 +74,7 @@ function Ripple(count, color, x, y) {
 			}
 
 		}
-	}
+	};
 }
 
 // *** sockets *** //
@@ -86,7 +86,7 @@ function sendDrawings(count, color, x, y) {
 		shapeColor: color,
 		circleX: x,
 		circleY: y
-	}
+	};
 
 	socket.emit("drawing", data);
 }
@@ -96,9 +96,9 @@ socket.on("drawFromOtherClients", function(data) {
 
 	drawRippleFromElsewhere = true;
 	dataFromElsewhere = data;
-	ripplesFromElsewhere.push(new Ripple(dataFromElsewhere.maxRadius, 
-						   dataFromElsewhere.shapeColor, 
-						   dataFromElsewhere.circleX, 
+	ripplesFromElsewhere.push(new Ripple(dataFromElsewhere.maxRadius,
+						   dataFromElsewhere.shapeColor,
+						   dataFromElsewhere.circleX,
 						   dataFromElsewhere.circleY));
 	// console.log(data);
 });
@@ -107,4 +107,3 @@ socket.on("drawFromOtherClients", function(data) {
 function windowResized() {
 	resizeCanvas(windowWidth, windowHeight);
 }
-
