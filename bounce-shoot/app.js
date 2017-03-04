@@ -5,15 +5,15 @@ var io = require("socket.io")(server);
 
 app.use(express.static(__dirname + "/public"));
 
-io.on("connection", function(client) {
-	console.log("a client is connected!");
-	client.emit("You are connected!");
-
-	client.on("drawing", function(data) {
-		client.broadcast.emit("drawFromOtherClients", data);
-	});
-
-});
+// io.on("connection", function(client) {
+// 	console.log("a client is connected!");
+// 	client.emit("You are connected!");
+//
+// 	client.on("attack", function(data) {
+// 		client.broadcast.emit("attackFromOthers", data);
+// 	});
+//
+// });
 
 var port = process.env.PORT || 3000;
 server.listen(port, function() {
