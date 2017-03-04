@@ -1,0 +1,63 @@
+{{#section "home"}}
+  <style>
+    input{
+      font-size: 20px;
+    }
+    #container {
+      width: 100%;
+      height: 100%;
+      margin: auto;
+      /*border: 1px solid black;*/
+    }
+
+    #nameInput {
+      width: 200px;
+      height: 30px;
+      position: fixed;
+      margin-top: 300px;
+      left: 43%;
+    }
+
+    #submitBtn {
+      width: 50px;
+      height: 20px;
+      position: fixed;
+      margin-top: 360px;
+      left: 48%;
+    }
+
+    #alertMsg {
+      width: 200px;
+      height: 30px;
+      position: fixed;
+      margin-top: 270px;
+      left: 43%;
+    }
+
+    button {
+      text-decoration: none;
+      position: fixed;
+      margin-top: 400px;
+      left: 47%;
+    }
+  </style>
+
+{{/section}}
+<div id="container">
+  <form id="registerForm" action="/" method="post">
+
+    {{#if message}}
+  		<p id="alertMsg" style="color: red">{{message}}</p>
+  	{{/if}}
+
+  	<div>
+  		<input id="nameInput" type="text" placeholder="Your name?"
+  		name="name">
+  	</div>
+
+    <input id="submitBtn" type="submit" value="PLAY!">
+
+  </form>
+
+  <a href="/rank"><button>Game Record</button></a>
+</div>

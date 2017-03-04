@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -10,14 +9,21 @@
                 margin: 0;
                 padding: 0;
                 outline: none;
+                overflow-y: hidden;
+                font-size: 25px;
             }
         </style>
 
     </head>
     <body>
-        <script src="/socket.io/socket.io.js"></script>
+      {{{body}}}
+      {{{_sections.home}}}
+      {{{_sections.game}}}
+      {{{_sections.rank}}}
+        <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 		<script type="text/javascript" src="/p5/p5.js"></script>
-        <script type="text/javascript" src="/p5/p5.sound.js"></script>
+    <script type="text/javascript" src="/p5/p5.sound.js"></script>
 
 		<script src="main.js"></script>
     </body>

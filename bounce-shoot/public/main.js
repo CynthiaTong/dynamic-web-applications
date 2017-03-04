@@ -1,4 +1,4 @@
-var socket = io.connect(window.location.origin);
+// var socket = io.connect(window.location.origin);
 
 var p;
 var madePlayer = false;
@@ -13,7 +13,7 @@ function setup() {
 }
 
 function draw() {
-	background(255, 100);
+	background(255, 150);
 
 	if (madePlayer) {
 
@@ -23,6 +23,15 @@ function draw() {
 			madePlayer = false;
 			bullets = [];
 			// console.log(p.lifeTime);
+			var score = Number(p.lifeTime/60.0).toFixed(2);
+			$("#result").show();
+			$("#score").html("You lived for a total of <i>" +
+												 score + "</i> seconds.");
+			$("#scoreInput").val(score);
+
+			$("#return").on("click", function() {
+				$("#submitScore").click();
+			});
 		}
 
 		else p.move();
@@ -138,7 +147,7 @@ function Player(name, color) {
 function Bullet(angle, initSpeed, posX, posY, deltaY) {
 	this.x = posX;
 	this.y = posY;
-	this.w = 10;
+	this.w = random(8, 12);
 	this.lifeTime = 300;
 
 	var vx = initSpeed*cos(angle);

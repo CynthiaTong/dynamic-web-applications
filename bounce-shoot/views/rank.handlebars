@@ -1,0 +1,20 @@
+{{#section "rank"}}
+  <style>
+    body {
+      overflow-y: visible;
+    }
+
+    .container {
+      width: 500px;
+      margin: 5% 30%;
+      text-align: left;
+    }
+  </style>
+{{/section}}
+
+<div class="container">
+  {{#each players}}
+      <p>{{name}} : {{score}} secs</p>
+      <hr>
+  {{/each}}
+</div>
