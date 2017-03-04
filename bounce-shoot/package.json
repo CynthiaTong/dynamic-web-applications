@@ -4,9 +4,13 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "engines": {
+    "node": "6.9.1"
+  },
+  "author": "Cynthia Xin Tong",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.0",
