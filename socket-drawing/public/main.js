@@ -11,12 +11,12 @@ var ripplesFromElsewhere = [];
 var ripples = [];
 
 // var notes = [54, 56, 58, 60, 62, 64, 65, 67, 69, 71, 73, 75, 77, 80];
-var osc; 
+var osc;
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
 
-	// start silent 
+	// start silent
 	osc = new p5.TriOsc();
 	osc.start();
 	osc.amp(0);
@@ -52,19 +52,20 @@ function mousePressed() {
 	circleX = mouseX;
 	circleY = mouseY;
 	maxRadius = random(70, 90);
-	ripples.push(new Ripple(maxRadius, shapeColor, circleX, circleY));
-	sendDrawings(maxRadius, shapeColor, circleX, circleY);
 
 	var randomNote = Math.floor(Math.random()*(80-50+1)) + 50;
 
-	playSound(randomNote, maxRadius/60.0);
+	ripples.push(new Ripple(maxRadius, shapeColor, circleX, circleY, randomNote, "fromClick"));
+	sendDrawings(maxRadius, shapeColor, circleX, circleY, randomNote);
+
 }
 
-
-function Ripple(count, color, x, y) {
+function Ripple(count, color, x, y, note, origin) {
 	this.count = count;
 	var draw = true;
 	var i = 10;
+
+	playSound(note, this.count/60.0);
 
 	this.drawRipple = function() {
 
@@ -82,6 +83,14 @@ function Ripple(count, color, x, y) {
 
 			if (i > this.count) {
 				draw = false;
+				// remove this particular ripple from array
+				if (origin === "fromClick") {
+					var index = ripples.indexOf(this);
+					ripples.splice(index,1);
+				} else if (origin === "fromClients") {
+					var index = ripplesFromElsewhere.indexOf(this);
+					ripplesFromElsewhere.splice(index,1);
+				}
 			}
 
 		}
@@ -101,13 +110,14 @@ function playSound(note, duration) {
 
 // *** sockets *** //
 
-function sendDrawings(count, color, x, y) {
+function sendDrawings(count, color, x, y, n) {
 
 	var data = {
 		maxRadius: count,
 		shapeColor: color,
 		circleX: x,
-		circleY: y
+		circleY: y,
+		note: n
 	};
 
 	socket.emit("drawing", data);
@@ -121,8 +131,9 @@ socket.on("drawFromOtherClients", function(data) {
 	ripplesFromElsewhere.push(new Ripple(dataFromElsewhere.maxRadius,
 						   dataFromElsewhere.shapeColor,
 						   dataFromElsewhere.circleX,
-						   dataFromElsewhere.circleY));
-	// console.log(data);
+						   dataFromElsewhere.circleY,
+						   dataFromElsewhere.note,
+						   "fromClients"));
 });
 
 

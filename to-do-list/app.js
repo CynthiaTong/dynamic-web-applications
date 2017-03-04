@@ -1,13 +1,11 @@
 var express = require("express");
 var handlebars = require("express-handlebars");
 var MongoClient = require("mongodb").MongoClient;
-var ObjectId = require('mongodb').ObjectId; 
+var ObjectId = require('mongodb').ObjectId;
 var bodyParser = require("body-parser");
-
-var app = express();
-
 var fs = require('fs');
 
+var app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -60,7 +58,7 @@ app.post("/add", function(req, res) {
 	var minute = d.getMinutes();
 	minute = minute > 9? ""+ minute: "0" + minute;
 
-	//format the due date properties 
+	//format the due date properties
 	var dueDate = req.body.due_date === ""? null: "Due on: " + req.body.due_date;
 	var dueTime = req.body.due_hour === ""? null: req.body.due_hour + ":" + req.body.due_min;
 	var rawContent = req.body.content.trim();
@@ -70,7 +68,7 @@ app.post("/add", function(req, res) {
 		//remove all the special characters in content (for jquery id reference purpose)
 		stripContent: rawContent.replace(/[^A-Za-z0-9]/g, ""),
 		tag: req.body.tag.trim(),
-		create_date: d.getFullYear() + "-" + month + "-" + d.getDate() + "  " + d.getHours() + ":" + minute, 
+		create_date: d.getFullYear() + "-" + month + "-" + d.getDate() + "  " + d.getHours() + ":" + minute,
 		due_date: dueDate,
 		exact_due_date: req.body.due_date,
 		due_time: dueTime,
@@ -87,7 +85,7 @@ app.post("/add", function(req, res) {
 			res.redirect("/");
 		});
 	}
-	
+
 });
 
 app.get("/delete/:content", function(req, res) {
@@ -103,7 +101,7 @@ app.get("/edit/:content", function(req, res) {
     res.render('edit-notes', {goal: result});
   });
 });
-	
+
 app.post("/edit-goals", function(req, res){
 
 	var d = new Date();
@@ -112,7 +110,7 @@ app.post("/edit-goals", function(req, res){
 	var minute = d.getMinutes();
 	minute = minute > 9? ""+ minute: "0" + minute;
 
-	//format the due date properties 
+	//format the due date properties
 	var dueDate = req.body.due_date === ""? null: "Due on: " + req.body.due_date;
 	var dueTime = req.body.due_hour === ""? null: req.body.due_hour + ":" + req.body.due_min;
 	var rawContent = req.body.content.trim();
@@ -122,7 +120,7 @@ app.post("/edit-goals", function(req, res){
 		//remove all the special characters in content (for jquery id reference purpose)
 		stripContent: rawContent.replace(/[^A-Za-z0-9]/g, ""),
 		tag: req.body.tag.trim(),
-		create_date: d.getFullYear() + "-" + month + "-" + d.getDate() + "  " + d.getHours() + ":" + minute, 
+		create_date: d.getFullYear() + "-" + month + "-" + d.getDate() + "  " + d.getHours() + ":" + minute,
 		due_date: dueDate,
 		exact_due_date: req.body.due_date,
 		due_time: dueTime,
@@ -131,27 +129,25 @@ app.post("/edit-goals", function(req, res){
 
 	};
 
-	// use ObjectId function (required above) to create proper _id value  
-	// in order to access the particular data document we're editing 
-	db.collection("goals").updateOne({_id: ObjectId(req.body.id)}, 
-		{$set: {content: goal.content, 
+	// use ObjectId function (required above) to create proper _id value
+	// in order to access the particular data document we're editing
+	db.collection("goals").updateOne({_id: ObjectId(req.body.id)},
+		{$set: {content: goal.content,
 				stripContent: goal.stripContent,
-				tag: goal.tag, 
-				create_date: goal.create_date, 
-				due_date:goal.due_date, 
-				due_time:goal.due_time, 
-				exact_due_date:goal.exact_due_date, 
+				tag: goal.tag,
+				create_date: goal.create_date,
+				due_date:goal.due_date,
+				due_time:goal.due_time,
+				exact_due_date:goal.exact_due_date,
 				due_hour: goal.due_hour,
-				due_min: goal.due_min} }, 
+				due_min: goal.due_min} },
 
 		function(err, result) {
    		res.redirect('/');
 	});
 });
-				
-		
-// CATCH ALL 
+
+// CATCH ALL
 app.get("*", function(req, res) {
 	res.redirect("/");
 });
-
