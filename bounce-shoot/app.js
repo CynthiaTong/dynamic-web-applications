@@ -63,7 +63,6 @@ app.get("/game", function(req, res) {
 });
 
 app.post("/game", function(req, res) {
-
 	db.collection("players").updateOne({_id: ObjectId(req.body.id)},
 	{$set: {score : req.body.score} },
 
@@ -83,7 +82,6 @@ app.get("/rank", function(req, res) {
 	db.collection("players").find({}).toArray(function(err, results) {
         // sort the player rank by their scores
         results = sortByKey(results, "score");
-
 		res.render("rank", {players: results});
 	});
 });
