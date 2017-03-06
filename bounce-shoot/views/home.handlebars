@@ -1,7 +1,8 @@
 {{#section "home"}}
   <style>
     input{
-      font-size: 20px;
+      font-family: 'Harmattan', sans-serif;
+      font-size: 27px;
     }
     #container {
       width: 100%;
@@ -30,7 +31,7 @@
       width: 200px;
       height: 30px;
       position: fixed;
-      margin-top: 270px;
+      margin-top: 260px;
       left: 43%;
     }
 
@@ -40,10 +41,22 @@
       margin-top: 400px;
       left: 47%;
     }
+
+    #instruction {
+        position: fixed;
+        top: 20px;
+        left: 32%;
+    }
   </style>
 
 {{/section}}
 <div id="container">
+    <p id="instruction">
+        Hi there, here's how to play. <br>
+        Click your mouse to start, there are two ways to lose: <br>
+        stay still, or get hit by a little black bullet your mouse shoots out!<br>
+        Avoid self destruction. Good luck!
+    </p>
   <form id="registerForm" action="/" method="post">
 
     {{#if message}}

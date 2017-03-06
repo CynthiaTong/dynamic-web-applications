@@ -63,7 +63,6 @@ app.get("/game", function(req, res) {
 });
 
 app.post("/game", function(req, res) {
-	console.log(req.body.score);
 
 	db.collection("players").updateOne({_id: ObjectId(req.body.id)},
 	{$set: {score : req.body.score} },
@@ -74,8 +73,17 @@ app.post("/game", function(req, res) {
 	});
 });
 
+function sortByKey(array, key) {
+  return array.sort(function(a,b) {
+      return parseFloat(b[key]) - parseFloat(a[key]);
+  });
+}
+
 app.get("/rank", function(req, res) {
 	db.collection("players").find({}).toArray(function(err, results) {
+        // sort the player rank by their scores
+        results = sortByKey(results, "score");
+
 		res.render("rank", {players: results});
 	});
 });
