@@ -10,6 +10,10 @@ var bullets = [];
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
+
+	if (!madePlayer)
+		p = new Player("ab", color(255, 0));
+	madePlayer = true;
 }
 
 function draw() {
@@ -61,11 +65,9 @@ function draw() {
 }
 
 
-function mousePressed() {
-	if (!madePlayer)
-		p = new Player("ab", color(255, 0));
-	madePlayer = true;
-}
+// function mousePressed() {
+//
+// }
 
 // function mouseMoved() {
 // 	if (madePlayer)

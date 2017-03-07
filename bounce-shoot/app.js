@@ -48,7 +48,7 @@ app.post("/", function(req, res) {
 	};
 
 	if (player.name.trim() === "") {
-		res.render("home", {message: "Enter your name!"});
+		res.render("home", {message: "Enter your name plz!"});
 	}
 	else {
 		db.collection("players").insert(player, function(err, result) {
@@ -82,6 +82,7 @@ app.get("/rank", function(req, res) {
 	db.collection("players").find({}).toArray(function(err, results) {
         // sort the player rank by their scores
         results = sortByKey(results, "score");
+        // console.log(results);
 		res.render("rank", {players: results});
 	});
 });

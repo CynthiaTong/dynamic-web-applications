@@ -11,65 +11,124 @@
       /*border: 1px solid black;*/
     }
 
+    #form {
+      width: 20%;
+      align-items: center;
+      position: relative;
+      top: 320px;
+      left: 42%;
+    }
+
     #nameInput {
       width: 200px;
       height: 30px;
-      position: fixed;
+      top: 0;
+      left: 0;
+      /*position: fixed;
       margin-top: 300px;
-      left: 43%;
+      left: 43%;*/
     }
 
     #submitBtn {
       width: 50px;
       height: 20px;
-      position: fixed;
-      margin-top: 360px;
-      left: 48%;
+      position: absolute;
+      top: 55px;
+      left: 75px;
+
+      /*position: fixed;*/
+      /*margin-top: 360px;*/
+      /*left: 48%;*/
     }
 
     #alertMsg {
       width: 200px;
-      height: 30px;
+      height: 20px;
       position: fixed;
-      margin-top: 270px;
-      left: 43%;
+      margin-top: 275px;
+      left: 42%;
     }
 
     button {
       text-decoration: none;
-      position: fixed;
-      margin-top: 400px;
-      left: 47%;
+      position: relative;
+      left: 60px;
+      top: 35px;
     }
 
     #instruction {
-        position: fixed;
-        top: 20px;
-        left: 32%;
+        position: absolute;
+        top: 100px;
+        min-width: 100%;
+        text-align: center;
+    }
+
+    h1 {
+      min-width: 100%;
+      position: fixed;
+      text-align: center;
+      margin-top: 0;
+      background-color: #bfbfbf;
+      color: #666666;
+    }
+    h2 {
+      font-size: 1em;
+      position: fixed;
+      left: 48%;
+      top: 30px;
+      color: #666666;
+    }
+
+    @media (max-width: 1000px) {
+      #form, #alertMsg {
+        left: 38%;
+      }
+    }
+
+    @media (max-width: 650px) {
+      #instruction {
+        font-size: 0.9em;
+        text-align: left;
+        width: 90%;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+      #form {
+        top: 380px;
+        left: 35%;
+      }
+      #alertMsg {
+        margin-top: 340px;
+        left: 35%;
+      }
     }
   </style>
 
 {{/section}}
 <div id="container">
+    <h1>
+      Bounce Shoot Game
+    </h1>
+    <h2>(AKA Self Destruction)</h2>
     <p id="instruction">
-        Hi there, here's how to play. <br>
-        Click your mouse to start, there are two ways to lose: <br>
+        Hi there, here's how to play. There are two ways to lose: <br>
         stay still, or get hit by a little black bullet your mouse shoots out!<br>
         Avoid self destruction. Good luck!
     </p>
-  <form id="registerForm" action="/" method="post">
+  <div id="form">
+    <form id="registerForm" action="/" method="post">
 
-    {{#if message}}
-  		<p id="alertMsg" style="color: red">{{message}}</p>
-  	{{/if}}
+      {{#if message}}
+    		<p id="alertMsg" style="color: red">{{message}}</p>
+    	{{/if}}
 
-  	<div>
-  		<input id="nameInput" type="text" placeholder="Your name?"
-  		name="name">
-  	</div>
+    		<input id="nameInput" type="text" placeholder="Your name?"
+    		name="name">
 
-    <input id="submitBtn" type="submit" value="PLAY!">
+      <input id="submitBtn" type="submit" value="PLAY!">
 
+    </form>
   </form>
 
   <a href="/rank"><button>Game Record</button></a>

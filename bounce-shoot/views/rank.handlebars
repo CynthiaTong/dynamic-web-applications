@@ -2,19 +2,55 @@
   <style>
     body {
       overflow-y: visible;
+      margin: 5% 0;
+      align-content: center;
+    }
+
+    #title {
+      font-size: 1.5em;
+      margin-left: 0.2em;
     }
 
     .container {
       width: 500px;
-      margin: 5% 33%;
+      margin: auto;
+      /*margin: 0 33%;*/
     }
+
+    .onePlayer {
+      width: inherit;
+      height: 60px;
+    }
+
+    #playerName {
+      position: relative;
+    }
+
+    #playerScore {
+      position: relative;
+      top: -70px;
+      left: 80%;
+    }
+
+  @media (max-width: 600px) {
+    .container {
+      width: 300px;
+    }
+    #playerScore {
+      left: 65%;
+    }
+  }
+
   </style>
 {{/section}}
 
 <div class="container">
-    <p> A complete Record of our Players! </p>
+    <p id="title"> A complete Record of our Players! </p>
   {{#each players}}
-      <p>{{name}} : {{score}} secs</p>
-      <hr>
+    <hr>
+    <div class="onePlayer">
+      <p id="playerName">{{name}}</p>
+      <p id="playerScore">{{score}} secs</p>
+    </div>
   {{/each}}
 </div>
