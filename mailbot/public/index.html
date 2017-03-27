@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>MailBot</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <form id="form" action="/sendmail" method="post">
+        <p id="errorMsg"></p>
+        <p>
+          <input id="email" type="text" placeholder="Email address" name="email" required/>
+        </p>
+
+        <select id="section" name="section" form="form" required>
+            <option selected disabled>Section</option>
+            <option value="Arts">Arts</option>
+            <option value="Books">Books</option>
+            <option value="Education">Education</option>
+            <option value="Fashion & Style">Fashion &amp; Style</option>
+            <option value="Food">Food</option>
+            <option value="Health">Health</option>
+            <option value="Movies">Movies</option>
+            <option value="Opinion">Opinion</option>
+            <option value="Science">Science</option>
+            <option value="Sports">Sports</option>
+            <option value="Technology">Technology</option>
+            <option value="Theater">Theater</option>
+            <option value="Travel">Travel</option>
+            <option value="U.S.">U.S.</option>
+            <option value="World">World</option>
+            <option value="all-sections">All-sections</option>
+
+        </select>
+        <select id="period" name="period" form="form" required>
+            <option selected disabled>Recency (Days)</option>
+            <option value="1">1</option>
+            <option value="7">7</option>
+            <option value="30">30</option>
+        </select>
+
+        <!-- <input type="text" placeholder="Section" name="section" required/> -->
+        <!-- <input type="text" placeholder="How Recent?" name="period" required/> -->
+        <input class="btn" id="submit" type="submit" value="Add to MailList &amp; Send Email"/>
+      <p></p>
+        <input class="btn" id="unsubscribeBtn" type="submit" value="unsubscribe" />
+      </form>
+    </div>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+  <script src="script.js"></script>
+  </body>
+</html>
