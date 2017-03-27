@@ -14,19 +14,44 @@
       height: 30px;
       position: fixed;
       margin-top: 250px;
-      left: 37%;
+      left: 40%;
     }
     #score {
       width: 400px;
       height: 30px;
       position: fixed;
       margin-top: 290px;
-      left: 37%;
+      left: 40%;
     }
     #return {
       position: fixed;
       margin-top: 350px;
-      left: 45%;
+      left: 48%;
+    }
+
+    @media (max-width: 950px) {
+        #greetings, #score {
+          left: 30%;
+        }
+        #return {
+          left: 45%;
+        }
+    }
+    @media (max-width: 600px) {
+        #greetings, #score {
+          left: 20%;
+        }
+        #return {
+          left: 40%;
+        }
+    }
+    @media (max-width: 500px) {
+        #greetings, #score {
+          left: 10%;
+        }
+        #return {
+          left: 20%;
+        }
     }
   </style>
 

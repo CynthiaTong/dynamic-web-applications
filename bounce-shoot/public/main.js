@@ -1,5 +1,5 @@
 // var socket = io.connect(window.location.origin);
-
+var gameStart = false;
 var p;
 var madePlayer = false;
 var bullets = [];
@@ -19,7 +19,7 @@ function setup() {
 function draw() {
 	background(255, 150);
 
-	if (madePlayer) {
+	if (madePlayer && gameStart) {
 
 		p.live();
 
@@ -40,7 +40,7 @@ function draw() {
 
 		else p.move();
 
-		if (p.lifeTime > 60 && p.lifeTime%20 === 0) {
+		if (p.lifeTime > 30 && p.lifeTime%20 === 0) {
 			if (!p.dead) p.fire();
 		}
 
@@ -69,11 +69,9 @@ function draw() {
 //
 // }
 
-// function mouseMoved() {
-// 	if (madePlayer)
-// 		p.moved  = true;
-// 	// sendData(p, bullets);
-// }
+function mouseMoved() {
+	gameStart = true;
+}
 
 // function Enemy(name, color, moveState, liveState, posX, posY) {
 //

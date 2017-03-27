@@ -44,7 +44,7 @@ app.post("/", function(req, res) {
 
 	player = {
 		name : req.body.name,
-		score : 0
+		score : 0,
 	};
 
 	if (player.name.trim() === "") {
@@ -59,7 +59,11 @@ app.post("/", function(req, res) {
 });
 
 app.get("/game", function(req, res) {
-	res.render("game", player);
+  db.collection("players").find({}).toArray(function(err, results) {
+        // sort the player rank by their scores
+        results = sortByKey(results, "score");
+	      res.render("game", player);
+  });
 });
 
 app.post("/game", function(req, res) {
