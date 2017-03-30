@@ -9,6 +9,11 @@ input, select, .btn {
   font-family: Georgia, serif;
 }
 
+/*prevent default autofill yellow background color */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
 #container {
   width: 800px;
   height: 400px;
@@ -26,6 +31,7 @@ input, select, .btn {
   width: 85%;
   height: 30px;
   font-size: 1em;
+  background-color: white;
 }
 
 #section, #period {

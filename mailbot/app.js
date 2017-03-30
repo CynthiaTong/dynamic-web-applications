@@ -114,6 +114,7 @@ var j = schedule.scheduleJob(rule, function(){
         }
 
     });
+
 });
 
 
@@ -129,10 +130,31 @@ app.post("/sendmail", function(req,res) {
     recency: period
   };
   var addedToList = false;
+  var userExist = false;
 
-  db.collection("mailinglist").insert(receiver, function(err, result) {
-    if (err) console.log(err);
-    addedToList = true;
+  db.collection("mailinglist").find({}).toArray(function(err, data) {
+    //  console.log(data);
+
+     for (var i in data) {
+         if (data[i].email === email && data[i].topic === section && data[i].recency === period) {
+             userExist = true;
+             console.log("dupicate users");
+             break;
+        }
+     }
+
+     if (!userExist) {
+         db.collection("mailinglist").insert(receiver, function(err, result) {
+           if (err) {
+               console.log(err);
+               addedToList = false;
+           }
+           else {
+               addedToList = true;
+           }
+         });
+     }
+
   });
 
   var nyTimesUrl = "https://api.nytimes.com/svc/mostpopular/v2/mostviewed/" +
@@ -176,17 +198,20 @@ app.post("/sendmail", function(req,res) {
           };
 
           transporter.sendMail(mailOptions, function(error, info){
-            if(error){
+            if (error) {
                 console.log(error);
                 res.send("Error, cannot send Email. Try again!");
             }else{
                 console.log("Email sent!");
                 // res.json({"sent-message": info.response});
                 if (addedToList) {
-                  res.send("Added to Mailing List & Email is sent!");
+                    res.send("Added to Mailing List & NYTimes Articles sent!");
                 }
-                else
-                  res.send("Email is sent but couldn't add to mailing list. Try again!");
+                else if (userExist) {
+                    res.send("User already exists in mailing list. NYTimes Articles sent!");
+                } else {
+                    res.send("NYTimes Articles sent but couldn't add to mailing list. Try again!");
+                }
             }
           });
         }
