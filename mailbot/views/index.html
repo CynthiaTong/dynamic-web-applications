@@ -8,6 +8,7 @@
   <body>
     <div id="container">
       <form id="form" action="/sendmail" method="post">
+        <p id="nouserMsg"><%= msg %></p>
         <p id="errorMsg"></p>
         <p>
           <input id="email" type="text" placeholder="Email address" name="email" required/>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Subscriptions</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-size: 20px;
+            }
+            #container {
+                width: 800px;
+                height: 100%;
+                margin:auto;
+                margin-top: 100px;
+            }
+
+            #backLink {
+              position: relative;
+              left: 690px;
+            }
+
+            .submitBtn {
+              width: 90px;
+              font-size: 1em;
+            }
+
+            table {
+                width: 800px;
+            }
+
+            tr > td {
+                margin-top: 0.8em;
+                border-bottom: 1px dashed gray;
+            }
+
+            .emailField {
+                width: 250px;
+                float: left;
+                margin-right: 20px;
+            }
+
+            .sectionField {
+                width: 25%;
+                float: left;
+                margin-right: 25px;
+            }
+
+            .recencyField {
+                width: 20%;
+                float: left;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="container">
+           <a id="backLink" href="/"><button>Back to Main Page</button></a>
+            <div id="content">
+                <p>Below are all your current subscriptions: </p>
+                    <div>
+                        <table>
+                            <th class="emailField" align="left">Email</th>
+                            <th class="sectionField" align="left">Section</th>
+                            <th class="recencyField" align="left">Recency(Days)</th>
+
+                            <% for(var i=0; i < rec.length; i++) { %>
+                            <tr>
+                              <form name="form" method="post" action="/subscriptions">
+                                     <input type="hidden" name="_id" value=<%= rec[i]._id %> >
+
+                                     <td class="emailField" align="left"><%=rec[i].email%>
+                                       <input type="hidden" name="email" value=<%= rec[i].email %> >
+                                     </td>
+                                     <td class="sectionField" align="left"><%=rec[i].topic%>
+                                         <input type="hidden" name="topic" value=<%= rec[i].topic %> >
+                                     </td>
+                                     <td class="recencyField" align="left"><%=rec[i].recency%>
+                                         <input type="hidden" name="recency" value=<%= rec[i].recency %> >
+                                     </td>
+                                     <td>
+                                       <input class="submitBtn" type="submit" value="unsubscribe" name="btn">
+                                     </td>
+                                </form>
+                            </tr>
+
+                           <% } %>
+                        </table>
+
+                    </div>
+            </div>
+        </div>
+    </body>
+</html>
