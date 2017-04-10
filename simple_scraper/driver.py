@@ -16,7 +16,7 @@ def webdriverSearch(q):
     # searcher.send_keys(Keys.RETURN);
     time.sleep(2)
 
-    SCROLL_PAUSE_TIME = 0.3
+    SCROLL_PAUSE_TIME = 0.2
 
     ### http://stackoverflow.com/questions/20986631/how-can-i-scroll-a-web-page-using-selenium-webdriver-in-python
     # Get scroll height

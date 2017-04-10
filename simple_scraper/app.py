@@ -3,7 +3,6 @@ from flask import Flask, request, render_template, jsonify
 import scrap
 import driver
 
-
 app = Flask(__name__)
 
 @app.route("/")
