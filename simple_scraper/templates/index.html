@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Simple Scraper</title>
+
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        form {
+            width: 800px;
+            height: 100px;
+            margin: auto;
+            margin-top: 300px;
+        }
+        
+        input:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0px 1000px white inset;
+        }
+
+        #searchTerm {
+            position: relative;
+            top: 30%;
+            left: 19%;
+            width: 350px;
+            height: 30px;
+            font-size: 20px;
+        }
+        #submitBtn {
+            background-color: rgba(163, 0, 71, 0.8);
+            border: none;
+            border-radius: 7%;
+            position: relative;
+            top: 29%;
+            left: 22%;
+            width: 105px;
+            height: 35px;
+            padding: 1px 3px;
+            font-size: 17px;
+            color: white;
+            cursor: pointer;
+        }
+
+        #submitBtn:hover{
+            background-color: rgb(225, 47, 118);
+        }
+
+        #logo {
+            position: absolute;
+            left: 40%;
+            top: 70px;
+        }
+    </style>
+    </head>
+    <body>
+        <img id="logo" src="../static/dribbble-logo.png" width="280" height="210">
+        <form id="searchForm" name="form" action="/scrap" method="post">
+            <input id="searchTerm" type="text" placeholder="search term" name="q">
+            <input id="submitBtn" type="submit" value="Get Images">
+        </form>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.0.1/spin.min.js'></script>
+    <script>
+        var form = document.getElementById("searchForm");
+
+        form.addEventListener("submit", function(e) {
+
+            var opts = {
+                lines: 11 // The number of lines to draw
+                , length: 15 // The length of each line
+                , width: 13 // The line thickness
+                , radius: 30 // The radius of the inner circle
+                , scale: 0.75 // Scales overall size of the spinner
+                , corners: 1 // Corner roundness (0..1)
+                , color: '#e12f76' // #rgb or #rrggbb or array of colors
+                , opacity: 0.3 // Opacity of the lines
+                , rotate: 0 // The rotation offset
+                , direction: 1 // 1: clockwise, -1: counterclockwise
+                , speed: 1 // Rounds per second
+                , trail: 53 // Afterglow percentage
+                , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+                , zIndex: 2e9 // The z-index (defaults to 2000000000)
+                , className: 'spinner' // The CSS class to assign to the spinner
+                , top: '50%' // Top position relative to parent
+                , left: '50%' // Left position relative to parent
+                , shadow: false // Whether to render a shadow
+                , hwaccel: false // Whether to use hardware acceleration
+                , position: 'absolute' // Element positioning
+                }
+
+                var target = document.body;
+                var spinner = new Spinner(opts).spin(target);
+        });
+    </script>
+    </body>
+</html>
