@@ -35,7 +35,6 @@ def webdriverSearch(q):
             break
         last_height = new_height
 
-
     items = driver.find_elements_by_css_selector(".dribbble-link picture source")
     # print(items)
     output = []
