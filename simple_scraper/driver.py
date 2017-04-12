@@ -42,7 +42,8 @@ def webdriverSearch(q):
 
     for item in items:
         src = item.get_attribute("srcset")
-        output.append(src)
+        if "teaser" not in src:
+            output.append(src)
 
     driver.quit()
 
