@@ -16,7 +16,7 @@ def webdriverSearch(q):
     # searcher.send_keys(Keys.RETURN);
     time.sleep(2)
 
-    SCROLL_PAUSE_TIME = 0.3
+    SCROLL_PAUSE_TIME = 0.2
 
     ### http://stackoverflow.com/questions/20986631/how-can-i-scroll-a-web-page-using-selenium-webdriver-in-python
     # Get scroll height
@@ -35,14 +35,14 @@ def webdriverSearch(q):
             break
         last_height = new_height
 
-
     items = driver.find_elements_by_css_selector(".dribbble-link picture source")
     # print(items)
     output = []
 
     for item in items:
         src = item.get_attribute("srcset")
-        output.append(src)
+        if "teaser" not in src:
+            output.append(src)
 
     driver.quit()
 
