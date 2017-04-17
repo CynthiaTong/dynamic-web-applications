@@ -8,7 +8,7 @@ def getDribbblePhotos(q):
     baseUrl = "https://dribbble.com/search?q=" + q
 
     for i in range(1,9):
-        
+
         url = baseUrl + "&page=" + str(i) + "&per_page=12"
         html = requests.get(url).text
         soup = BeautifulSoup(html,"html.parser")
