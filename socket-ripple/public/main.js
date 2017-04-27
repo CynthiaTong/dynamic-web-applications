@@ -51,7 +51,7 @@ function mousePressed() {
 	shapeColor = randomColor();
 	circleX = mouseX;
 	circleY = mouseY;
-	maxRadius = random(70, 90);
+	maxRadius = random(100, 150);
 
 	var randomNote = Math.floor(Math.random()*(80-50+1)) + 50;
 
@@ -62,6 +62,8 @@ function mousePressed() {
 
 function Ripple(count, color, x, y, note, origin) {
 	this.count = count;
+	this.x = x;
+	this.y = y;
 	var draw = true;
 	var i = 10;
 
@@ -71,13 +73,11 @@ function Ripple(count, color, x, y, note, origin) {
 
 		if (draw) {
 			noStroke();
-			fill(color[0], color[1], color[2], 255-i*3);
-			ellipse(x, y, i, i);
-			// ellipse(x, y, i-30, i-30);
-			fill(color[0], color[1], color[2], 255-i*2);
-			ellipse(x, y, i-15, i-15);
-			fill(color[0], color[1], color[2], 255-i);
-			ellipse(x, y, i-30, i-30);
+
+            for (var x=0; x < 5; ++x) {
+                fill(color[0], color[1], color[2], 255-i*2.5);
+                ellipse(this.x, this.y, i-10*x, i-10*x);
+            }
 
 			i+=0.3;
 
